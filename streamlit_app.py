@@ -7,7 +7,7 @@ st.title("Gemini chatbot app")
 
 # api_key, base_url = os.environ["API_KEY"], os.environ["BASE_URL"]
 api_key, base_url = st.secrets["API_KEY"], st.secrets["BASE_URL"]
-selected_model = "gpt-5.2"
+selected_model = "gpt-4o"
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?."}]
@@ -19,10 +19,13 @@ if prompt := st.chat_input():
     if not api_key:
         st.info("Invalid API key.")
         st.stop()
-    client = ...
+    const client = new OpenAI();
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
-    response = ...
+    response = client.chat.completions.create(
+        model=selected_model,
+        messages=[{f"role": "user", "content": "{prompt}"}],
+    )
 
     msg = response.choices[0].message.content
     st.session_state.messages.append({"role": "assistant", "content": msg})
