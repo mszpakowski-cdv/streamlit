@@ -28,7 +28,7 @@ if prompt := st.chat_input():
     st.chat_message("user").write(prompt)
     response = client.chat.completions.create(
         model=selected_model,
-        messages=[{f"role": "user", "content": "{prompt}"}],
+        messages=[{f"role": "user", "content": "{msg}"}],
     )
 
     msg = response.choices[0].message.content
