@@ -5,3 +5,4 @@ numpy
 langchain_huggingface
 faiss-cpu
 sentence-transformers
+torchvision
