@@ -3,4 +3,5 @@ streamlit
 pypdf
 numpy
 langchain_huggingface
-faiss
+faiss-cpu
+sentence-transformers
