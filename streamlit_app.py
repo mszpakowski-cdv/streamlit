@@ -3,8 +3,8 @@ from openai import OpenAI
 import os
 
 st.set_page_config(layout="wide", page_title="Gemini chatbot app")
-st.title("Gemini chatbot app")
-st.file_uploader(label="Dodaj załącznik")
+st.title("OpenAI chatbot app")
+uploaded_file = st.file_uploader(label="Dodaj załącznik")
 
 # api_key, base_url = os.environ["API_KEY"], os.environ["BASE_URL"]
 api_key, base_url = st.secrets["API_KEY"], st.secrets["BASE_URL"]
@@ -27,6 +27,14 @@ if prompt := st.chat_input():
 
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
+
+    if uploaded_file is not None:
+        client.files.create(
+            file=uploaded_file
+    )
+
+    uploaded_file = None
+
     response = client.chat.completions.create(
         model=selected_model,
         messages=st.session_state.messages,
