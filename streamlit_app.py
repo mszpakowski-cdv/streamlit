@@ -30,7 +30,7 @@ if prompt := st.chat_input():
 
     if uploaded_file is not None:
         client.files.create(
-            file=uploaded_file.read().decode("utf-8"),
+            file=uploaded_file,
             purpose="assistants"
         )
         st.session_state.messages.append({"role": "user", "content": uploaded_file})
