@@ -26,17 +26,17 @@ if prompt := st.chat_input():
     )
 
     if uploaded_file is not None:
-    b64 = base64.b64encode(uploaded_file.read()).decode("utf-8")
-    file_message = {
-        "role": "user",
-        "content": [{
-            "type": "file",
-            "file": {
-                "filename": uploaded_file.name,
-                "file_data": f"data:application/pdf;base64,{b64}",
-            },
-        }],
-    }
+        b64 = base64.b64encode(uploaded_file.read()).decode("utf-8")
+        file_message = {
+            "role": "user",
+            "content": [{
+                "type": "file",
+                "file": {
+                    "filename": uploaded_file.name,
+                    "file_data": f"data:application/pdf;base64,{b64}",
+                },
+            }],
+        }
     st.session_state.messages.append(file_message)
     st.chat_message("user").write(f"📎 {uploaded_file.name}")
     uploaded_file = None
