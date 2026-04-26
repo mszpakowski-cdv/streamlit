@@ -1,6 +1,7 @@
 import streamlit as st
 from openai import OpenAI
 import os
+import base64
 
 st.set_page_config(layout="wide", page_title="Gemini chatbot app")
 st.title("OpenAI chatbot app")
