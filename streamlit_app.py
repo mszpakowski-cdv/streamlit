@@ -31,7 +31,7 @@ if prompt := st.chat_input():
     if uploaded_file is not None:
         client.files.create(
             file=uploaded_file
-    )
+        )
 
     uploaded_file = None
 
