@@ -3,7 +3,8 @@ from openai import OpenAI
 import os
 
 st.set_page_config(layout="wide", page_title="Gemini chatbot app")
-st.title("OpenAI chatbot app")
+st.title("Gemini chatbot app")
+st.file_uploader(label="Dodaj załącznik")
 
 # api_key, base_url = os.environ["API_KEY"], os.environ["BASE_URL"]
 api_key, base_url = st.secrets["API_KEY"], st.secrets["BASE_URL"]
