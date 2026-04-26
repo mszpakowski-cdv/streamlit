@@ -92,7 +92,7 @@ if prompt := st.chat_input():
     if st.session_state.faiss_index is not None:
         relevant = retrieve_docs(prompt, st.session_state.faiss_index)
         context = "\n\n---\n\n".join(doc["text"] for doc in relevant)
-        messages_for_api.insert(-1, {
+        messages_for_api.append({
             "role": "system",
             "content": f"Use the following context from the user's document to answer:\n\n{context}",
         })
