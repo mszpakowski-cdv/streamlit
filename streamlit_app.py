@@ -42,8 +42,12 @@ if prompt := st.chat_input():
     
     response = client.chat.completions.create(
         model=selected_model,
-        messages=st.session_state.messages,
-        attachments=attachments
+        messages=[{
+            "role": "user", 
+            "content": prompt, 
+            "attachments": attachments
+        }],
+        tools=[{"type": "code_interpreter"}]
     )
 
     msg = response.choices[0].message.content
