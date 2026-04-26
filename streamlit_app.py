@@ -21,7 +21,7 @@ if prompt := st.chat_input():
         st.stop()
     client = OpenAI(
          # This is the default and can be omitted
-        api_key=os.environ.get("API_KEY"),
+        api_key=api_key,
     )
 
     st.session_state.messages.append({"role": "user", "content": prompt})
