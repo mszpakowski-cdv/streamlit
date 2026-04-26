@@ -30,8 +30,11 @@ if prompt := st.chat_input():
             file=uploaded_file,
             purpose="assistants"
         )
-        st.session_state.messages.append({"role": "user", "content": openai_file})
-        st.chat_message("user").write(openai_file)
+        attachments = [{
+            "file_id": openai_file.id,
+            "tools": [{"type": "code_interpreter"}]
+        }]
+
         uploaded_file = None
 
     st.session_state.messages.append({"role": "user", "content": prompt})
@@ -40,6 +43,7 @@ if prompt := st.chat_input():
     response = client.chat.completions.create(
         model=selected_model,
         messages=st.session_state.messages,
+        attachments=attachments
     )
 
     msg = response.choices[0].message.content
