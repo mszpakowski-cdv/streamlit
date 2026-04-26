@@ -26,12 +26,12 @@ if prompt := st.chat_input():
     )
 
     if uploaded_file is not None:
-        client.files.create(
+        openai_file = client.files.create(
             file=uploaded_file,
             purpose="assistants"
         )
-        st.session_state.messages.append({"role": "user", "content": uploaded_file})
-        st.chat_message("user").write(uploaded_file)
+        st.session_state.messages.append({"role": "user", "content": openai_file})
+        st.chat_message("user").write(openai_file)
         uploaded_file = None
 
     st.session_state.messages.append({"role": "user", "content": prompt})
