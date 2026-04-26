@@ -38,9 +38,8 @@ if prompt := st.chat_input():
                 },
             }],
         }
-    st.session_state.messages.append(file_message)
-    st.chat_message("user").write(f"📎 {uploaded_file.name}")
-    uploaded_file = None
+        #st.session_state.messages.append(file_message)
+        uploaded_file = None
 
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
