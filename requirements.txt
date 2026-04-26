@@ -2,3 +2,5 @@ openai
 streamlit
 pypdf
 numpy
+langchain_huggingface
+faiss
