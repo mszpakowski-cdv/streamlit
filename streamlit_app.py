@@ -94,7 +94,7 @@ if prompt := st.chat_input():
         context = "\n\n---\n\n".join(doc["text"] for doc in relevant)
         messages_for_api.append({
             "role": "system",
-            "content": f"Use the following context from the user's document to answer:\n\n{context}",
+            "content": f"Answer only based on the user's file if attached. Use the following context from the user's document to answer:\n\n{context}",
         })
 
     response = client.chat.completions.create(
