@@ -6,8 +6,8 @@ st.set_page_config(layout="wide", page_title="Gemini chatbot app")
 st.title("Gemini chatbot app")
 
 # api_key, base_url = os.environ["API_KEY"], os.environ["BASE_URL"]
-api_key, base_url = st.API_KEY, st.BASE_URL
-selected_model = "gpt-4o"
+api_key, base_url = st.secrets["API_KEY"], st.secrets["BASE_URL"]
+selected_model = "gpt-5.2"
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?."}]
