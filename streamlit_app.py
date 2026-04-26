@@ -30,7 +30,8 @@ if prompt := st.chat_input():
 
     if uploaded_file is not None:
         client.files.create(
-            file=uploaded_file
+            file=uploaded_file,
+            purpose="assistants"
         )
 
     uploaded_file = None
