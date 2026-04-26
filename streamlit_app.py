@@ -26,28 +26,27 @@ if prompt := st.chat_input():
     )
 
     if uploaded_file is not None:
-        openai_file = client.files.create(
-            file=uploaded_file,
-            purpose="assistants"
-        )
-        attachments = [{
-            "file_id": openai_file.id,
-            "tools": [{"type": "code_interpreter"}]
-        }]
-
-        uploaded_file = None
+    b64 = base64.b64encode(uploaded_file.read()).decode("utf-8")
+    file_message = {
+        "role": "user",
+        "content": [{
+            "type": "file",
+            "file": {
+                "filename": uploaded_file.name,
+                "file_data": f"data:application/pdf;base64,{b64}",
+            },
+        }],
+    }
+    st.session_state.messages.append(file_message)
+    st.chat_message("user").write(f"📎 {uploaded_file.name}")
+    uploaded_file = None
 
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
     
     response = client.chat.completions.create(
         model=selected_model,
-        messages=[{
-            "role": "user", 
-            "content": prompt, 
-            "attachments": attachments
-        }],
-        tools=[{"type": "code_interpreter"}]
+        messages=st.session_state.messages,
     )
 
     msg = response.choices[0].message.content
