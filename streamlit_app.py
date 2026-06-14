@@ -6,12 +6,12 @@ import numpy as np
 from pypdf import PdfReader
 from langchain_huggingface import HuggingFaceEmbeddings
 
-st.set_page_config(layout="wide", page_title="OpenAI chatbot app")
-st.title("OpenAI chatbot app")
+st.set_page_config(layout="wide", page_title="Bielik chatbot app")
+st.title("Bielik chatbot app")
 uploaded_file = st.file_uploader(label="Dodaj załącznik")
 
 api_key, base_url = st.secrets["API_KEY"], st.secrets["BASE_URL"]
-selected_model = "gpt-4o"
+selected_model = "speakleash/Bielik-PL-11B-v3.0-Instruct"
 
 class FAISSIndex:
     def __init__(self, faiss_index, metadata):
@@ -63,7 +63,7 @@ def retrieve_docs(query, faiss_index, k=3):
 
 
 if "messages" not in st.session_state:
-    st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?."}]
+    st.session_state["messages"] = [{"role": "assistant", "content": "W czym mogę pomóc?"}]
 if "faiss_index" not in st.session_state:
     st.session_state["faiss_index"] = None
     st.session_state["indexed_filename"] = None
@@ -75,7 +75,7 @@ if prompt := st.chat_input():
     if not api_key:
         st.info("Invalid API key.")
         st.stop()
-    client = OpenAI(api_key=api_key)
+    client = OpenAI(api_key=api_key, base_url=base_url)
 
     if uploaded_file is not None and uploaded_file.name != st.session_state.indexed_filename:
         reader = PdfReader(io.BytesIO(uploaded_file.read()))
@@ -94,7 +94,7 @@ if prompt := st.chat_input():
         context = "\n\n---\n\n".join(doc["text"] for doc in relevant)
         messages_for_api.append({
             "role": "system",
-            "content": f"Answer only based on the user's file if attached. Use the following context from the user's document to answer:\n\n{context}",
+            "content": f"Odpowiadaj wyłącznie na podstawie załączonego pliku użytkownika. Wykorzystaj poniższy kontekst z dokumentu użytkownika, aby udzielić odpowiedzi:\n\n{context}",
         })
 
     response = client.chat.completions.create(
