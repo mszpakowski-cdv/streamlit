@@ -1,10 +1,6 @@
 streamlit
-pypdf
-numpy
-torch
-transformers
-accelerate
-bitsandbytes
-langchain_huggingface
-faiss-cpu
+huggingface_hub
 sentence-transformers
+faiss-cpu
+numpy
+pypdf
