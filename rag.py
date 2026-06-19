@@ -7,7 +7,7 @@ import numpy as np
 import faiss
 from sentence_transformers import SentenceTransformer
 
-EMBED_MODEL = "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
+EMBED_MODEL = "BAAI/bge-m3"
 FAISS_INDEX_PATH = "vectorstore/index.faiss"
 METADATA_PATH = "vectorstore/metadata.json"
 
@@ -30,7 +30,9 @@ def _load_resources():
 def retrieve(query: str, k: int = 5) -> list[dict]:
     """Zwraca k najbardziej pasujących chunków do zapytania."""
     _load_resources()
-    query_embedding = _model.encode([query]).astype("float32")
+    query_embedding = _model.encode(
+        [query], normalize_embeddings=True
+    ).astype("float32")
     distances, indices = _index.search(query_embedding, k)
     results = []
     for idx in indices[0]:

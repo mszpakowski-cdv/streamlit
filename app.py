@@ -13,19 +13,32 @@ from guardrails import is_traffic_related
 
 # ── Konfiguracja ──────────────────────────────────────────────────────────────
 
-# Adres lokalnego serwera Ollama oraz nazwa modelu Bielik
 OLLAMA_URL = "http://localhost:11434/api/chat"
 MODEL = "SpeakLeash/bielik-4.5b-v3.0-instruct:Q8_0"
 
-SYSTEM_PROMPT = """Jesteś asystentem prawnym dla policjantów drogówki w Polsce.
-Twoim zadaniem jest analiza opisanych sytuacji drogowych i wskazanie:
-1. Które przepisy zostały naruszone (z dokładnym numerem artykułu)
-2. Jaka kara lub mandat grozi sprawcy
-3. Tryb postępowania (mandat, wniosek o ukaranie itd.)
+# Ile fragmentów przepisów pobieramy z bazy (więcej = większa szansa na trafny artykuł)
+TOP_K = 8
 
-Odpowiadaj zwięźle, konkretnie i po polsku.
-Cytuj numery artykułów. Jeśli kontekst nie zawiera odpowiedzi — powiedz to wprost.
-Nie wymyślaj przepisów."""
+SYSTEM_PROMPT = """Jesteś asystentem prawnym dla polskich policjantów drogówki.
+Analizujesz opisane sytuacje drogowe i wskazujesz naruszone przepisy oraz grożące kary.
+
+ZASADY ODPOWIEDZI:
+1. W pierwszej kolejności opieraj się WYŁĄCZNIE na przepisach podanych w sekcji
+   "PRZEPISY (KONTEKST)". Cytuj dokładne numery artykułów z tego kontekstu.
+2. Jeśli w dostarczonych przepisach NIE MA podstawy do oceny sytuacji, a znasz
+   odpowiedź z własnej wiedzy — możesz jej udzielić, ale MUSISZ wyraźnie oznaczyć
+   to ostrzeżeniem w osobnej sekcji:
+   "⚠️ Uwaga: poniższe nie wynika z dostarczonych przepisów, podaję z wiedzy ogólnej:"
+3. NIGDY nie mieszaj obu źródeł. Najpierw to, co wynika z kontekstu (z numerami
+   artykułów), a dopiero potem — jeśli trzeba — osobno to, co dopowiadasz z wiedzy własnej.
+4. Nie podawaj numeru artykułu jako pochodzącego z kontekstu, jeśli go tam nie ma.
+
+STRUKTURA ODPOWIEDZI:
+1. Naruszone przepisy (z numerami artykułów z kontekstu)
+2. Grożąca kara / mandat
+3. Tryb postępowania
+
+Odpowiadaj zwięźle, konkretnie i po polsku."""
 
 # ── UI ────────────────────────────────────────────────────────────────────────
 
@@ -38,18 +51,14 @@ st.set_page_config(
 st.title("🚔 Agent Kodeksu Drogowego")
 st.caption("System wsparcia prawnego dla policjantów drogówki")
 
-# Sprawdź czy vectorstore istnieje
 if not os.path.exists("vectorstore/index.faiss"):
-    st.error(
-        "⚠️ Baza wiedzy nie istnieje. Uruchom najpierw: `python ingest.py`"
-    )
+    st.error("⚠️ Baza wiedzy nie istnieje. Uruchom najpierw: `python ingest.py`")
     st.stop()
 
 
-# ── Funkcja wywołująca Bielika przez Ollama ──────────────────────────────────
+# ── Wywołanie Bielika przez Ollama ───────────────────────────────────────────
 
 def zapytaj_bielika(system_prompt: str, user_prompt: str) -> str:
-    """Wysyła zapytanie do lokalnego serwera Ollama i zwraca odpowiedź modelu."""
     r = requests.post(
         OLLAMA_URL,
         json={
@@ -71,22 +80,18 @@ def zapytaj_bielika(system_prompt: str, user_prompt: str) -> str:
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Wyświetl historię
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
-# Input
 if prompt := st.chat_input("Opisz sytuację na drodze..."):
 
-    # Pokaż wiadomość użytkownika
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
 
     with st.chat_message("assistant"):
 
-        # Guardrails
         if not is_traffic_related(prompt):
             response = (
                 "⚠️ To zapytanie nie dotyczy przepisów ruchu drogowego ani wykroczeń. "
@@ -95,36 +100,31 @@ if prompt := st.chat_input("Opisz sytuację na drodze..."):
             st.markdown(response)
 
         else:
-            # RAG — pobierz kontekst
             with st.spinner("🔍 Przeszukuję kodeks..."):
-                chunks = retrieve(prompt, k=5)
+                chunks = retrieve(prompt, k=TOP_K)
                 context = format_context(chunks)
 
-            # Buduj prompt z kontekstem
-            full_user_prompt = f"""Przepisy prawne (kontekst):
+            full_user_prompt = f"""PRZEPISY (KONTEKST):
 {context}
 
-Sytuacja zgłoszona przez policjanta:
+SYTUACJA ZGŁOSZONA PRZEZ POLICJANTA:
 {prompt}
 
-Wskaż naruszone przepisy i grożące kary."""
+Wskaż naruszone przepisy i grożące kary zgodnie z zasadami odpowiedzi."""
 
-            # Wywołanie Bielika przez Ollama
             with st.spinner("⚖️ Analizuję przepisy..."):
                 try:
                     response = zapytaj_bielika(SYSTEM_PROMPT, full_user_prompt)
                 except requests.exceptions.ConnectionError:
                     response = (
                         "❌ Nie mogę połączyć się z Ollamą. "
-                        "Upewnij się, że Ollama jest uruchomiona (ikonka lamy na pasku) "
-                        "i model jest pobrany."
+                        "Upewnij się, że Ollama jest uruchomiona (ikonka lamy na pasku)."
                     )
                 except Exception as e:
                     response = f"❌ Błąd połączenia z modelem: {e}"
 
             st.markdown(response)
 
-            # Pokaż źródła
             with st.expander("📄 Źródła (znalezione fragmenty przepisów)"):
                 for i, chunk in enumerate(chunks, 1):
                     source_label = {
