@@ -1,0 +1,359 @@
+[
+  {
+    "key": "def_zasady",
+    "name": "Definicje i zasady ogólne",
+    "doc": "prawo_o_ruchu_drogowym",
+    "doc_label": "Prawo o ruchu drogowym",
+    "articles": [
+      "2",
+      "3",
+      "4"
+    ],
+    "target": 20,
+    "focus": "szczególna ostrożność, ograniczone zaufanie, definicje (skrzyżowanie, droga, strefa zamieszkania/ruchu, ustąpienie pierwszeństwa)",
+    "pack": "eval/packs/def_zasady.md"
+  },
+  {
+    "key": "znaki_sygnaly",
+    "name": "Znaki, sygnały i hierarchia poleceń",
+    "doc": "prawo_o_ruchu_drogowym",
+    "doc_label": "Prawo o ruchu drogowym",
+    "articles": [
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "target": 20,
+    "focus": "polecenia kierującego ruchem > sygnały świetlne > znaki; sygnały dawane przez osobę",
+    "pack": "eval/packs/znaki_sygnaly.md"
+  },
+  {
+    "key": "piesi_przejscia",
+    "name": "Ruch pieszych i przejścia dla pieszych",
+    "doc": "prawo_o_ruchu_drogowym",
+    "doc_label": "Prawo o ruchu drogowym",
+    "articles": [
+      "11",
+      "12",
+      "13",
+      "14",
+      "26"
+    ],
+    "target": 20,
+    "focus": "pierwszeństwo pieszego na/przed przejściem, wejście a pierwszeństwo, kolumny pieszych",
+    "pack": "eval/packs/piesi_przejscia.md"
+  },
+  {
+    "key": "wlaczanie",
+    "name": "Włączanie się do ruchu",
+    "doc": "prawo_o_ruchu_drogowym",
+    "doc_label": "Prawo o ruchu drogowym",
+    "articles": [
+      "17"
+    ],
+    "target": 20,
+    "focus": "co JEST a co NIE JEST włączaniem się do ruchu (strefa zamieszkania vs strefa ruchu vs droga publiczna)",
+    "pack": "eval/packs/wlaczanie.md"
+  },
+  {
+    "key": "predkosc",
+    "name": "Prędkość dopuszczalna i odległość",
+    "doc": "prawo_o_ruchu_drogowym",
+    "doc_label": "Prawo o ruchu drogowym",
+    "articles": [
+      "19",
+      "20",
+      "21",
+      "27"
+    ],
+    "target": 20,
+    "focus": "prędkości dopuszczalne wg obszaru/pojazdu, odległość, prędkość bezpieczna; brak naruszenia gdy w limicie",
+    "pack": "eval/packs/predkosc.md"
+  },
+  {
+    "key": "zmiana_kierunku_pasa",
+    "name": "Zmiana kierunku jazdy i pasa ruchu",
+    "doc": "prawo_o_ruchu_drogowym",
+    "doc_label": "Prawo o ruchu drogowym",
+    "articles": [
+      "22"
+    ],
+    "target": 20,
+    "focus": "sygnalizowanie, ustąpienie pierwszeństwa przy zmianie pasa, zawracanie i jego zakazy",
+    "pack": "eval/packs/zmiana_kierunku_pasa.md"
+  },
+  {
+    "key": "wymijanie_omijanie_cofanie",
+    "name": "Wymijanie, omijanie i cofanie",
+    "doc": "prawo_o_ruchu_drogowym",
+    "doc_label": "Prawo o ruchu drogowym",
+    "articles": [
+      "23"
+    ],
+    "target": 20,
+    "focus": "różnice wymijanie/omijanie/cofanie; cofanie a ustąpienie pierwszeństwa; zakazy cofania",
+    "pack": "eval/packs/wymijanie_omijanie_cofanie.md"
+  },
+  {
+    "key": "wyprzedzanie",
+    "name": "Wyprzedzanie",
+    "doc": "prawo_o_ruchu_drogowym",
+    "doc_label": "Prawo o ruchu drogowym",
+    "articles": [
+      "24"
+    ],
+    "target": 20,
+    "focus": "zakazy wyprzedzania (skrzyżowania, przejścia), wyprzedzanie z prawej na jezdni jednokierunkowej, sygnalizujący skręt w lewo",
+    "pack": "eval/packs/wyprzedzanie.md"
+  },
+  {
+    "key": "pierwszenstwo",
+    "name": "Pierwszeństwo i przecinanie kierunków ruchu",
+    "doc": "prawo_o_ruchu_drogowym",
+    "doc_label": "Prawo o ruchu drogowym",
+    "articles": [
+      "25"
+    ],
+    "target": 20,
+    "focus": "ZASADA PRAWEJ RĘKI — pojazd z LEWEJ NIE ma pierwszeństwa; skręt w lewo; pojazd szynowy; poza skrzyżowaniem",
+    "pack": "eval/packs/pierwszenstwo.md"
+  },
+  {
+    "key": "widocznosc_ostrzeganie",
+    "name": "Ograniczona widoczność i ostrzeganie",
+    "doc": "prawo_o_ruchu_drogowym",
+    "doc_label": "Prawo o ruchu drogowym",
+    "articles": [
+      "28",
+      "29",
+      "30"
+    ],
+    "target": 20,
+    "focus": "sygnał dźwiękowy/świetlny, jazda we mgle, dozwolone/zakazane użycie sygnałów",
+    "pack": "eval/packs/widocznosc_ostrzeganie.md"
+  },
+  {
+    "key": "holowanie",
+    "name": "Holowanie",
+    "doc": "prawo_o_ruchu_drogowym",
+    "doc_label": "Prawo o ruchu drogowym",
+    "articles": [
+      "31"
+    ],
+    "target": 20,
+    "focus": "warunki holowania, prędkość, połączenie, zakazy (np. na autostradzie)",
+    "pack": "eval/packs/holowanie.md"
+  },
+  {
+    "key": "swiatla",
+    "name": "Używanie świateł zewnętrznych",
+    "doc": "prawo_o_ruchu_drogowym",
+    "doc_label": "Prawo o ruchu drogowym",
+    "articles": [
+      "51",
+      "52"
+    ],
+    "target": 20,
+    "focus": "światła mijania w dzień, drogowe a oślepianie, postojowe, przeciwmgłowe — kiedy wolno/nie wolno",
+    "pack": "eval/packs/swiatla.md"
+  },
+  {
+    "key": "zatrzymanie_postoj",
+    "name": "Zatrzymanie i postój",
+    "doc": "prawo_o_ruchu_drogowym",
+    "doc_label": "Prawo o ruchu drogowym",
+    "articles": [
+      "46",
+      "47",
+      "48",
+      "49",
+      "50",
+      "50a"
+    ],
+    "target": 20,
+    "focus": "różnica zatrzymanie vs postój; gdzie zabronione; odległości od przejścia/skrzyżowania; postój a hamulec/silnik",
+    "pack": "eval/packs/zatrzymanie_postoj.md"
+  },
+  {
+    "key": "przewoz_pasy_foteliki",
+    "name": "Przewóz osób i ładunków, pasy, foteliki",
+    "doc": "prawo_o_ruchu_drogowym",
+    "doc_label": "Prawo o ruchu drogowym",
+    "articles": [
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44",
+      "61",
+      "62",
+      "63"
+    ],
+    "target": 20,
+    "focus": "pasy bezpieczeństwa i wyjątki, foteliki dla dzieci, przewóz osób/ładunku, kask",
+    "pack": "eval/packs/przewoz_pasy_foteliki.md"
+  },
+  {
+    "key": "zakazy_kierujacego",
+    "name": "Zakazy kierującego (telefon, stan, manewry)",
+    "doc": "prawo_o_ruchu_drogowym",
+    "doc_label": "Prawo o ruchu drogowym",
+    "articles": [
+      "45"
+    ],
+    "target": 20,
+    "focus": "zakaz korzystania z telefonu wymagającego trzymania, jazda w stanie nietrzeźwości, inne zakazy z art. 45",
+    "pack": "eval/packs/zakazy_kierujacego.md"
+  },
+  {
+    "key": "uprzywilejowane",
+    "name": "Pojazdy uprzywilejowane",
+    "doc": "prawo_o_ruchu_drogowym",
+    "doc_label": "Prawo o ruchu drogowym",
+    "articles": [
+      "9",
+      "53",
+      "53a"
+    ],
+    "target": 20,
+    "focus": "warunki uprzywilejowania (sygnały + ostrożność), obowiązek ustąpienia, kiedy pojazd NIE jest uprzywilejowany",
+    "pack": "eval/packs/uprzywilejowane.md"
+  },
+  {
+    "key": "rowery_uto",
+    "name": "Rowery, hulajnogi, UTO",
+    "doc": "prawo_o_ruchu_drogowym",
+    "doc_label": "Prawo o ruchu drogowym",
+    "articles": [
+      "15a",
+      "33",
+      "33a"
+    ],
+    "target": 20,
+    "focus": "korzystanie z drogi dla rowerów, chodnika, przewóz dziecka, pierwszeństwo UTO/pieszych",
+    "pack": "eval/packs/rowery_uto.md"
+  },
+  {
+    "key": "strefa_autostrada",
+    "name": "Strefa zamieszkania/ruchu i autostrady",
+    "doc": "prawo_o_ruchu_drogowym",
+    "doc_label": "Prawo o ruchu drogowym",
+    "articles": [
+      "16",
+      "20"
+    ],
+    "target": 20,
+    "focus": "20 km/h i pierwszeństwo pieszego w strefie zamieszkania; zakazy na autostradzie/ekspresowej; ruch prawostronny",
+    "pack": "eval/packs/strefa_autostrada.md"
+  },
+  {
+    "key": "dokumenty_stan_techniczny",
+    "name": "Dokumenty i stan techniczny pojazdu",
+    "doc": "prawo_o_ruchu_drogowym",
+    "doc_label": "Prawo o ruchu drogowym",
+    "articles": [
+      "38",
+      "66",
+      "71"
+    ],
+    "target": 20,
+    "focus": "wymagane dokumenty, warunki techniczne i dopuszczenie do ruchu, rejestracja/dowód",
+    "pack": "eval/packs/dokumenty_stan_techniczny.md"
+  },
+  {
+    "key": "kontrola_drogowa",
+    "name": "Kontrola ruchu drogowego (uprawnienia Policji)",
+    "doc": "prawo_o_ruchu_drogowym",
+    "doc_label": "Prawo o ruchu drogowym",
+    "articles": [
+      "129",
+      "130a",
+      "131",
+      "132",
+      "135"
+    ],
+    "target": 20,
+    "focus": "uprawnienia policjanta, badanie trzeźwości, usunięcie pojazdu, zatrzymanie dowodu rejestracyjnego / prawa jazdy",
+    "pack": "eval/packs/kontrola_drogowa.md"
+  },
+  {
+    "key": "mandat_przeslanki",
+    "name": "Postępowanie mandatowe — przesłanki i granice grzywny",
+    "doc": "kodeks_wykroczen",
+    "doc_label": "Kodeks postępowania w sprawach o wykroczenia",
+    "articles": [
+      "95",
+      "96"
+    ],
+    "target": 16,
+    "focus": "kiedy WOLNO nałożyć mandat, górne granice grzywny, sytuacje wykluczające mandat",
+    "pack": "eval/packs/mandat_przeslanki.md"
+  },
+  {
+    "key": "mandat_rodzaje",
+    "name": "Rodzaje mandatów i ich skutki",
+    "doc": "kodeks_wykroczen",
+    "doc_label": "Kodeks postępowania w sprawach o wykroczenia",
+    "articles": [
+      "98",
+      "97"
+    ],
+    "target": 16,
+    "focus": "mandat gotówkowy/kredytowany/zaoczny, kiedy staje się prawomocny, pouczenie",
+    "pack": "eval/packs/mandat_rodzaje.md"
+  },
+  {
+    "key": "odmowa_mandatu",
+    "name": "Odmowa przyjęcia mandatu",
+    "doc": "kodeks_wykroczen",
+    "doc_label": "Kodeks postępowania w sprawach o wykroczenia",
+    "articles": [
+      "97",
+      "99"
+    ],
+    "target": 16,
+    "focus": "skutek odmowy: skierowanie wniosku o ukaranie do sądu; prawo do odmowy",
+    "pack": "eval/packs/odmowa_mandatu.md"
+  },
+  {
+    "key": "tryby_postepowania",
+    "name": "Tryby postępowania (zwyczajny/przyspieszony/nakazowy)",
+    "doc": "kodeks_wykroczen",
+    "doc_label": "Kodeks postępowania w sprawach o wykroczenia",
+    "articles": [
+      "2",
+      "54",
+      "89",
+      "90",
+      "91",
+      "92",
+      "93",
+      "94"
+    ],
+    "target": 16,
+    "focus": "kiedy tryb przyspieszony, kiedy nakazowy, czynności wyjaśniające",
+    "pack": "eval/packs/tryby_postepowania.md"
+  },
+  {
+    "key": "strony_wlasciwosc",
+    "name": "Strony, właściwość i środki zaskarżenia",
+    "doc": "kodeks_wykroczen",
+    "doc_label": "Kodeks postępowania w sprawach o wykroczenia",
+    "articles": [
+      "9",
+      "10",
+      "11",
+      "17",
+      "103",
+      "104",
+      "105",
+      "106",
+      "107"
+    ],
+    "target": 16,
+    "focus": "Policja jako oskarżyciel publiczny, sąd właściwy, apelacja/zażalenie, sprzeciw od nakazu",
+    "pack": "eval/packs/strony_wlasciwosc.md"
+  }
+]

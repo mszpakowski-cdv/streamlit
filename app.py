@@ -14,29 +14,61 @@ from guardrails import is_traffic_related
 # ── Konfiguracja ──────────────────────────────────────────────────────────────
 
 OLLAMA_URL = "http://localhost:11434/api/chat"
-MODEL = "SpeakLeash/bielik-4.5b-v3.0-instruct:Q8_0"
+MODEL = "hf.co/gaianet/Bielik-4.5B-v3.0-Instruct-GGUF:Q6_K"
 
-# Ile fragmentów przepisów pobieramy z bazy (więcej = większa szansa na trafny artykuł)
-TOP_K = 8
+# Ile fragmentów przepisów trafia do modelu po rerankingu (mniej, ale trafniej)
+TOP_K = 5
 
-SYSTEM_PROMPT = """Jesteś asystentem prawnym dla polskich policjantów drogówki.
-Analizujesz opisane sytuacje drogowe i wskazujesz naruszone przepisy oraz grożące kary.
+SYSTEM_PROMPT = """Jesteś asystentem prawnym dla polskich policjantów drogówki. Oceniasz, czy opisana
+sytuacja drogowa stanowi naruszenie przepisów, na podstawie DOSTARCZONYCH przepisów.
 
-ZASADY ODPOWIEDZI:
-1. W pierwszej kolejności opieraj się WYŁĄCZNIE na przepisach podanych w sekcji
-   "PRZEPISY (KONTEKST)". Cytuj dokładne numery artykułów z tego kontekstu.
-2. Jeśli w dostarczonych przepisach NIE MA podstawy do oceny sytuacji, a znasz
-   odpowiedź z własnej wiedzy — możesz jej udzielić, ale MUSISZ wyraźnie oznaczyć
-   to ostrzeżeniem w osobnej sekcji:
-   "⚠️ Uwaga: poniższe nie wynika z dostarczonych przepisów, podaję z wiedzy ogólnej:"
-3. NIGDY nie mieszaj obu źródeł. Najpierw to, co wynika z kontekstu (z numerami
-   artykułów), a dopiero potem — jeśli trzeba — osobno to, co dopowiadasz z wiedzy własnej.
-4. Nie podawaj numeru artykułu jako pochodzącego z kontekstu, jeśli go tam nie ma.
+STANDARD OCENY:
+Stosujesz standard administracyjny (jak w sprawach o wykroczenia drogowe), NIE karny.
+NIE wymagaj pewności „ponad wszelką wątpliwość". Naruszenie stwierdzasz, gdy z faktów
+i treści przepisu wynika ono w sposób przeważający (bardziej prawdopodobne niż nie).
+Przeoczenie realnego naruszenia jest BŁĘDEM TAK SAMO POWAŻNYM jak uznanie czystej
+sytuacji za naruszenie. Nie faworyzuj żadnej z odpowiedzi z góry — oceniaj fakty.
+
+SPOSÓB PRACY:
+1. Opieraj się WYŁĄCZNIE na przepisach z sekcji „PRZEPISY (KONTEKST)". Cytuj dokładny
+   numer artykułu i ustępu z tego kontekstu.
+2. Dla każdego istotnego przepisu wykonaj ślad faktów:
+   a) Przytocz, co przepis NAKAZUJE lub ZABRANIA (kto, komu, co, w którą stronę, pod
+      jakim warunkiem, z jakim wyjątkiem). Czytaj dosłownie i nie odwracaj kierunku
+      reguły (np. „polecenia osoby kierującej ruchem MAJĄ pierwszeństwo przed sygnałami
+      świetlnymi" — nie na odwrót).
+   b) Wypisz fakty z opisu — co kierujący FAKTYCZNIE zrobił lub czego zaniechał. Nie
+      dopisuj zachowań, których w opisie nie ma (np. nie zakładaj, że „kierujący
+      ustąpił", jeśli opis tego nie mówi).
+   c) Porównaj: czy fakty spełniają obowiązek, czy go naruszają. Zaniechanie obowiązku
+      (np. niezachowanie szczególnej ostrożności) jest naruszeniem tak samo jak
+      działanie zakazane.
+3. Traktuj obowiązek jako całość — nie rozbijaj jednego obowiązku na osobne reguły, by
+   każdą z osobna oddalić.
+4. Zanim orzekniesz naruszenie, sprawdź WYJĄTKI — czy treść przepisu nie przewiduje
+   okoliczności wyłączającej naruszenie (np. pojazd uprzywilejowany z włączonymi
+   sygnałami; zachowanie wprost dopuszczone przez przepis jako wariant; pierwszeństwo po
+   stronie kierującego). Jeśli przepis przewiduje taki wyjątek i tu on zachodzi — to
+   „Brak naruszenia".
+5. Werdykt: jeśli fakty naruszają przepis i nie zachodzi wyjątek — napisz, że doszło do
+   naruszenia, i wskaż artykuł; jeśli naruszenie nie wynika — napisz wprost „Brak
+   naruszenia" i wyjaśnij, którego warunku nie spełniono; jeśli przepisy nie wystarczają
+   — powiedz to otwarcie.
+
+KARA, MANDAT, KWALIFIKACJA:
+Jeśli w sekcji „PRZEPISY (KONTEKST)" jest pozycja taryfikatora mandatów odpowiadająca
+czynowi — podaj kwalifikację Kodeksu wykroczeń (np. „art. 92a § 1 k.w.") oraz kwotę
+grzywny dokładnie tak, jak w taryfikatorze, i zaznacz, że pochodzi z taryfikatora.
+Jeśli odpowiedniej pozycji NIE ma w kontekście — NIE wymyślaj artykułu k.w., kwoty ani
+punktów. Napisz, że nie wynika to z dostarczonych przepisów, albo umieść pod flagą
+„⚠️ Uwaga: poniższe nie wynika z dostarczonych przepisów, podaję z wiedzy ogólnej:".
 
 STRUKTURA ODPOWIEDZI:
-1. Naruszone przepisy (z numerami artykułów z kontekstu)
-2. Grożąca kara / mandat
-3. Tryb postępowania
+1. Analiza — ślad faktów (obowiązek → fakty → wniosek)
+2. Ocena — naruszone przepisy ruchu (z numerami) ALBO wyraźne „Brak naruszenia"
+3. Kara / mandat — kwalifikacja k.w. i kwota grzywny z taryfikatora w kontekście;
+   jeśli brak pozycji, zaznacz to (nie zgaduj kwoty)
+4. Tryb postępowania — tylko jeśli wynika z przepisów KPW w kontekście
 
 Odpowiadaj zwięźle, konkretnie i po polsku."""
 
@@ -110,7 +142,10 @@ if prompt := st.chat_input("Opisz sytuację na drodze..."):
 SYTUACJA ZGŁOSZONA PRZEZ POLICJANTA:
 {prompt}
 
-Wskaż naruszone przepisy i grożące kary zgodnie z zasadami odpowiedzi."""
+Oceń tę sytuację: wykonaj ślad faktów dla każdego istotnego przepisu (co przepis
+nakazuje/zabrania → co kierujący faktycznie zrobił → wniosek), podaj werdykt
+(„naruszenie" + artykuł, albo „Brak naruszenia"), a kwalifikację k.w. i kwotę mandatu
+podaj wyłącznie z pozycji taryfikatora obecnej w kontekście — nie zgaduj."""
 
             with st.spinner("⚖️ Analizuję przepisy..."):
                 try:
@@ -128,10 +163,13 @@ Wskaż naruszone przepisy i grożące kary zgodnie z zasadami odpowiedzi."""
             with st.expander("📄 Źródła (znalezione fragmenty przepisów)"):
                 for i, chunk in enumerate(chunks, 1):
                     source_label = {
-                        "kodeks_wykroczen": "Kodeks postępowania w sprawach o wykroczenia",
+                        "kpw": "Kodeks postępowania w sprawach o wykroczenia",
                         "prawo_o_ruchu_drogowym": "Prawo o ruchu drogowym",
+                        "taryfikator": "Taryfikator mandatów",
                     }.get(chunk["source"], chunk["source"])
-                    st.markdown(f"**{i}. {source_label} — {chunk['article']}**")
+                    score = chunk.get("score")
+                    score_label = f" · trafność {score:.2f}" if score is not None else ""
+                    st.markdown(f"**{i}. {source_label} — {chunk['article']}**{score_label}")
                     st.text(chunk["text"][:300] + "...")
                     st.divider()
 

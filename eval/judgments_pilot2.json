@@ -1,0 +1,604 @@
+[
+ {
+  "id": "taryfikator-001",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "incorrect",
+  "article_assessment": "acceptable",
+  "hallucinated_law": true,
+  "penalty_handling": "fabricated",
+  "error_categories": [
+   "E4_fabricated_penalty",
+   "E2_misread_condition"
+  ],
+  "severity": "major",
+  "rationale": "Werdykt naruszenia trafny, ale przekroczenie o 25 km/h mieści sie w art. 92a § 1 (lp.75, 300 zl), a model pewnie podal bledna kwalifikacje art. 92a § 2 i zmyslona kwote 1500-3000 zl oraz nieistniejacy 'art. 20 ust. 4'."
+ },
+ {
+  "id": "taryfikator-002",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "correct",
+  "article_assessment": "on_point",
+  "hallucinated_law": false,
+  "penalty_handling": "correct_from_context",
+  "error_categories": [],
+  "severity": "none",
+  "rationale": "Trafny werdykt, poprawna kwalifikacja art. 92a § 2 i kwota 800 zl zgodna z taryfikatorem (31-40 km/h). Drobnie nietrafione uzasadnienie art. 20 (panowanie nad pojazdem) zamiast wprost przekroczenia predkosci, ale to nie wada istotna."
+ },
+ {
+  "id": "taryfikator-003",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "correct",
+  "article_assessment": "on_point",
+  "hallucinated_law": false,
+  "penalty_handling": "correct_from_context",
+  "error_categories": [],
+  "severity": "none",
+  "rationale": "Werdykt, kwalifikacja art. 92a § 2 i kwota 1500 zl (lp.79, 51-60 km/h) w pelni zgodne z taryfikatorem. Czysto."
+ },
+ {
+  "id": "taryfikator-004",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "incorrect",
+  "article_assessment": "wrong",
+  "hallucinated_law": true,
+  "penalty_handling": "fabricated",
+  "error_categories": [
+   "E4_fabricated_penalty",
+   "E8_over_citation",
+   "E5_source_confusion"
+  ],
+  "severity": "major",
+  "rationale": "Przekroczenie o 6 km/h to art. 92a § 1, 50 zl (lp.72). Model nigdy tego nie wskazal, zamiast tego nawalil nieadekwatne art. 21, 24, 63 i podal zmyslone kwoty 350 zl / 1500 zl z bledna kwalifikacja, bez jednoznacznej odpowiedzi."
+ },
+ {
+  "id": "taryfikator-005",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "correct",
+  "article_assessment": "on_point",
+  "hallucinated_law": false,
+  "penalty_handling": "correct_from_context",
+  "error_categories": [],
+  "severity": "none",
+  "rationale": "Poprawnie: art. 45 ust. 2 pkt 1 PoRD, kwalifikacja art. 97 k.w. i kwota 500 zl (lp.67) zgodne z kontekstem. Czysto."
+ },
+ {
+  "id": "taryfikator-006",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "correct",
+  "article_assessment": "on_point",
+  "hallucinated_law": false,
+  "penalty_handling": "correct_from_context",
+  "error_categories": [],
+  "severity": "none",
+  "rationale": "Poprawnie: art. 39 ust. 1 PoRD, art. 97 k.w. i kwota 100 zl (lp.63) zgodne z taryfikatorem. Czysto."
+ },
+ {
+  "id": "taryfikator-007",
+  "model_verdict": "brak_naruszenia",
+  "verdict_correct": false,
+  "legal_correctness": "incorrect",
+  "article_assessment": "wrong",
+  "hallucinated_law": false,
+  "penalty_handling": "omitted",
+  "error_categories": [
+   "E2_misread_condition",
+   "E6_under_detection"
+  ],
+  "severity": "major",
+  "rationale": "Kryterium to wzrost ponizej 150 cm (dziecko ma 110 cm) - jest naruszenie i mandat 300 zl (lp.58). Model skupil sie na wieku >3 lata i blednie orzekl brak naruszenia, pomijajac wlasciwa pozycje taryfikatora."
+ },
+ {
+  "id": "cross_synthesis-003",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "incorrect",
+  "article_assessment": "missing",
+  "hallucinated_law": true,
+  "penalty_handling": "na",
+  "error_categories": [
+   "E1_halluc_article",
+   "E7_procedural_error"
+  ],
+  "severity": "major",
+  "rationale": "Naruszenie art. 26 trafne, ale pytanie dotyczylo trybu postepowania - model calkowicie pominal tryb przyspieszony (art. 90 KPW) i wniosek o ukaranie (art. 99 KPW), zamiast tego zmyslil zastepcza kare aresztu i nieistniejacy 'art. 95a k.k.w.'."
+ },
+ {
+  "id": "cross_synthesis-011",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "partially_correct",
+  "article_assessment": "on_point",
+  "hallucinated_law": false,
+  "penalty_handling": "fabricated",
+  "error_categories": [
+   "E4_fabricated_penalty",
+   "E8_over_citation"
+  ],
+  "severity": "minor",
+  "rationale": "Trafnie wskazal naruszenie odstepu art. 19 ust. 3 i art. 97 k.w. (mandat na goracym uczynku). Wada: niepotrzebnie miesza art. 24 (wyprzedzanie) i fabrykuje kwote 300 zl 'lp.91', choc kara tu nie jest scisle stypizowana."
+ },
+ {
+  "id": "cross_synthesis-013",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "incorrect",
+  "article_assessment": "wrong",
+  "hallucinated_law": false,
+  "penalty_handling": "fabricated",
+  "error_categories": [
+   "E5_source_confusion",
+   "E4_fabricated_penalty"
+  ],
+  "severity": "major",
+  "rationale": "Wyjazd z nieruchomosci to wlaczanie sie do ruchu - art. 17 PoRD. Model powolal bledny art. 25 (skrzyzowanie) i art. 26 ust. 2 (pieszy/przejscie) oraz dopisal nieadekwatny mandat 1500/3000 zl za nieustapienie pieszemu, ktory nie wystepuje w sprawie."
+ },
+ {
+  "id": "cross_synthesis-019",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "partially_correct",
+  "article_assessment": "wrong",
+  "hallucinated_law": false,
+  "penalty_handling": "fabricated",
+  "error_categories": [
+   "E5_source_confusion",
+   "E4_fabricated_penalty"
+  ],
+  "severity": "minor",
+  "rationale": "Wlasciwa podstawa to art. 27 ust. 1a PoRD (skret a rowerzysta na pasie dla rowerow); model powolal art. 26 ust. 2 (przejazd dla rowerow) - przepis pokrewny, lecz nietrafny - i dorzucil mandat 86b z taryfikatora, choc kara nie byla przedmiotem pytania. Werdykt poprawny."
+ },
+ {
+  "id": "def_zasady-005",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "incorrect",
+  "article_assessment": "wrong",
+  "hallucinated_law": false,
+  "penalty_handling": "fabricated",
+  "error_categories": [
+   "E5_source_confusion",
+   "E4_fabricated_penalty",
+   "E8_over_citation"
+  ],
+  "severity": "major",
+  "rationale": "Pytanie dotyczylo kwalifikacji zatrzymanie/postoj - art. 2 pkt 30 (5 min = postoj). Model nie odpowiedzial na to pytanie, powolal art. 46 i zmyslil kwoty z lp.160/169, ktore nie wynikaja ze stanu faktycznego."
+ },
+ {
+  "id": "def_zasady-011",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "incorrect",
+  "article_assessment": "wrong",
+  "hallucinated_law": true,
+  "penalty_handling": "fabricated",
+  "error_categories": [
+   "E5_source_confusion",
+   "E4_fabricated_penalty",
+   "E8_over_citation"
+  ],
+  "severity": "major",
+  "rationale": "Pytanie o definicje niedostatecznej widocznosci (art. 2 pkt 25) i obowiazek z art. 3 - model tego nie poruszyl, blednie rozwazal art. 30/28/24 i zmyslil kwoty oraz punkty karne (50 zl + 2 pkt, 300 zl + 6 pkt), ktorych nie ma w kontekscie."
+ },
+ {
+  "id": "def_zasady-017",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "incorrect",
+  "article_assessment": "wrong",
+  "hallucinated_law": true,
+  "penalty_handling": "fabricated",
+  "error_categories": [
+   "E1_halluc_article",
+   "E4_fabricated_penalty",
+   "E2_misread_condition"
+  ],
+  "severity": "major",
+  "rationale": "Kwota mandatu i punkty karne sa poza korpusem (grounding external) - nalezalo to zaznaczyc. Model zamiast tego zmyslil 'URT' art. 15a, 24 ust. 7, 17, blednie zalozyl pieszych i podal fikcyjne kwoty (200 zl, 1000/2000 zl) jako fakt."
+ },
+ {
+  "id": "def_zasady-018",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "partially_correct",
+  "article_assessment": "acceptable",
+  "hallucinated_law": true,
+  "penalty_handling": "fabricated",
+  "error_categories": [
+   "E4_fabricated_penalty",
+   "E8_over_citation"
+  ],
+  "severity": "minor",
+  "rationale": "Werdykt trafny, ale model całkowicie ominął sedno (osoba prowadząca rower jest pieszym wg Art. 2 pkt 18) i nie odniósł się do argumentu kierowcy; powołał Art. 13/24, a karę podał jako 'Art. 86a, do 500 zł' — w rzeczywistości nieustąpienie pierwszeństwa pieszemu to art. 86b § 1 pkt 1 (1500/3000 zł), więc kwalifikacja i kwota zmyślone."
+ },
+ {
+  "id": "dokumenty_stan_techniczny-005",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "partially_correct",
+  "article_assessment": "on_point",
+  "hallucinated_law": true,
+  "penalty_handling": "fabricated",
+  "error_categories": [
+   "E4_fabricated_penalty"
+  ],
+  "severity": "minor",
+  "rationale": "Trafny werdykt i właściwy Art. 66 z poprawnie zacytowaną treścią (drobna pomyłka ust.1 zamiast ust.4). Jednak kwota '500 zł' i konkretna kwalifikacja k.w. nie wynikają z pozycji taryfikatora dla antyradaru — kwota zmyślona, podana jako fakt."
+ },
+ {
+  "id": "dokumenty_stan_techniczny-006",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "partially_correct",
+  "article_assessment": "acceptable",
+  "hallucinated_law": true,
+  "penalty_handling": "fabricated",
+  "error_categories": [
+   "E2_misread_condition",
+   "E4_fabricated_penalty"
+  ],
+  "severity": "minor",
+  "rationale": "Werdykt trafny i numer Art. 66 poprawny, ale model przytoczył treść ust. 3 (zasady używania sygnałów przez pojazd uprzywilejowany) zamiast właściwego zakazu montażu z ust. 4 pkt 3; kwota 'do 500 zł' niepoparta pozycją taryfikatora — zmyślona."
+ },
+ {
+  "id": "cross_synthesis-001",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "incorrect",
+  "article_assessment": "wrong",
+  "hallucinated_law": true,
+  "penalty_handling": "fabricated",
+  "error_categories": [
+   "E1_halluc_article",
+   "E4_fabricated_penalty",
+   "E8_over_citation",
+   "E7_procedural_error"
+  ],
+  "severity": "major",
+  "rationale": "Werdykt 'naruszenie' trafny, ale prędkość to Art. 20 (nie Art. 21 ust. 4), a Art. 14/60 są nieadekwatne; model sam policzył 28 km/h, lecz przypisał bracket 51-60 (art. 92a § 2) i 1500 zł — faktyczna pozycja to 26-30 km/h = 400 zł, więc kwalifikacja i kwota zmyślone; pominął odpowiedź proceduralną (Art. 97 KPW)."
+ },
+ {
+  "id": "cross_synthesis-009",
+  "model_verdict": "brak_naruszenia",
+  "verdict_correct": false,
+  "legal_correctness": "incorrect",
+  "article_assessment": "missing",
+  "hallucinated_law": false,
+  "penalty_handling": "na",
+  "error_categories": [
+   "E6_under_detection",
+   "E2_misread_condition"
+  ],
+  "severity": "major",
+  "rationale": "Błędny werdykt: wjazd w utworzony korytarz życia przez pojazd nieuprzywilejowany narusza Art. 9 ust. 3, a model orzekł brak naruszenia, analizując tylko ust. 1 i pomijając kluczowy ust. 3."
+ },
+ {
+  "id": "cross_synthesis-010",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "correct",
+  "article_assessment": "on_point",
+  "hallucinated_law": false,
+  "penalty_handling": "na",
+  "error_categories": [
+   "E8_over_citation"
+  ],
+  "severity": "none",
+  "rationale": "Trafny werdykt i właściwy Art. 25 ust. 1; aspekt proceduralny opisany poprawnie (po odmowie organ występuje do sądu z wnioskiem o ukaranie = treść Art. 99 KPW), choć bez podania numeru. Nadmiarowe rozważanie Art. 26/86b, ale wyraźnie odrzucone jako nieadekwatne."
+ },
+ {
+  "id": "cross_synthesis-017",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "correct",
+  "article_assessment": "on_point",
+  "hallucinated_law": false,
+  "penalty_handling": "correct_from_context",
+  "error_categories": [],
+  "severity": "none",
+  "rationale": "Trafny werdykt i właściwy Art. 49 ust. 1 pkt 2; model wprost obalił argument kierowcy (zakaz dotyczy także samego zatrzymania). Kwalifikacja art. 97 k.w. i kwota powiązane z pozycją taryfikatora obecną w kontekście."
+ },
+ {
+  "id": "def_zasady-001",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "partially_correct",
+  "article_assessment": "acceptable",
+  "hallucinated_law": true,
+  "penalty_handling": "fabricated",
+  "error_categories": [
+   "E4_fabricated_penalty"
+  ],
+  "severity": "minor",
+  "rationale": "Werdykt trafny; Art. 26 (szczególna ostrożność przy przejściu) jest merytorycznie adekwatny, mimo że gold oczekiwał Art. 2/3. Jednak '500 zł i 6 punktów' podano jako z taryfikatora, choć retrieval nie trafił właściwej pozycji — kara zmyślona."
+ },
+ {
+  "id": "def_zasady-006",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "incorrect",
+  "article_assessment": "acceptable",
+  "hallucinated_law": true,
+  "penalty_handling": "fabricated",
+  "error_categories": [
+   "E4_fabricated_penalty",
+   "E1_halluc_article"
+  ],
+  "severity": "major",
+  "rationale": "Wniosek o przekroczeniu prędkości w strefie zamieszkania jest sensowny (gold: zalezy/wiedza ogólna), ale kwalifikacja k.w. jest rażąco błędna — art. 94 § 1a dotyczy braku uprawnień, nie prędkości, a kwota 200 zł zmyślona; pewnie podana fałszywa podstawa karna."
+ },
+ {
+  "id": "cross_synthesis-002",
+  "model_verdict": "naruszenie",
+  "verdict_correct": false,
+  "legal_correctness": "incorrect",
+  "article_assessment": "wrong",
+  "hallucinated_law": true,
+  "penalty_handling": "fabricated",
+  "error_categories": [
+   "E3_guilt_bias",
+   "E2_misread_condition",
+   "E4_fabricated_penalty"
+  ],
+  "severity": "major",
+  "rationale": "Błędny werdykt: pojazd z LEWEJ nie ma pierwszeństwa, więc zatrzymany kierowca nie naruszył Art. 25; model poprawnie zacytował regułę (ustąp z prawej), po czym wbrew niej orzekł naruszenie (guilt bias) i dodał zmyśloną karę."
+ },
+ {
+  "id": "cross_synthesis-004",
+  "model_verdict": "naruszenie",
+  "verdict_correct": false,
+  "legal_correctness": "incorrect",
+  "article_assessment": "wrong",
+  "hallucinated_law": true,
+  "penalty_handling": "fabricated",
+  "error_categories": [
+   "E3_guilt_bias",
+   "E2_misread_condition",
+   "E4_fabricated_penalty"
+  ],
+  "severity": "major",
+  "rationale": "Błędny werdykt: pojazd na poboczu, dobrze widoczny, nieutrudniający ruchu = brak naruszenia (Art. 49/46/50). Model wymyślił naruszenie obowiązku trójkąta z Art. 50 i dodał niepoparte odniesienie do kary, ignorując że awaryjny postój na poboczu był sygnalizowany."
+ },
+ {
+  "id": "cross_synthesis-006",
+  "model_verdict": "naruszenie",
+  "verdict_correct": false,
+  "legal_correctness": "incorrect",
+  "article_assessment": "wrong",
+  "hallucinated_law": true,
+  "penalty_handling": "fabricated",
+  "error_categories": [
+   "E2_misread_condition",
+   "E3_guilt_bias",
+   "E4_fabricated_penalty"
+  ],
+  "severity": "major",
+  "rationale": "Błędny werdykt: Art. 49 ust. 1 pkt 7 dopuszcza postój przy lewej krawędzi na drodze jednokierunkowej w obszarze zabudowanym. Model sam zacytował ten wyjątek, lecz go zignorował, orzekł naruszenie i dopisał kwotę 100 zł."
+ },
+ {
+  "id": "cross_synthesis-008",
+  "model_verdict": "naruszenie",
+  "verdict_correct": false,
+  "legal_correctness": "incorrect",
+  "article_assessment": "wrong",
+  "hallucinated_law": true,
+  "penalty_handling": "fabricated",
+  "error_categories": [
+   "E6_under_detection",
+   "E2_misread_condition",
+   "E4_fabricated_penalty"
+  ],
+  "severity": "major",
+  "rationale": "Błędny werdykt: karetka ZRM w akcji ratowania życia z włączonymi oboma sygnałami jest uprzywilejowana i może nie stosować się do sygnałów (Art. 53 ust. 2). Model pominął Art. 53, powołał Art. 29/97 i zmyśloną karę 100 zł."
+ },
+ {
+  "id": "cross_synthesis-015",
+  "model_verdict": "brak_naruszenia",
+  "verdict_correct": true,
+  "legal_correctness": "partially_correct",
+  "article_assessment": "on_point",
+  "hallucinated_law": true,
+  "penalty_handling": "fabricated",
+  "error_categories": [
+   "E4_fabricated_penalty"
+  ],
+  "severity": "minor",
+  "rationale": "Trafny werdykt i właściwa analiza Art. 47 ust. 1 (warunki spełnione = brak naruszenia). Wada: po stwierdzeniu braku naruszenia model wewnętrznie sprzecznie dopisał kwalifikację art. 97 k.w. i kwotę 100 zł, której nie ma podstaw nakładać."
+ },
+ {
+  "id": "cross_synthesis-018",
+  "model_verdict": "brak_naruszenia",
+  "verdict_correct": false,
+  "legal_correctness": "incorrect",
+  "article_assessment": "acceptable",
+  "hallucinated_law": false,
+  "penalty_handling": "na",
+  "error_categories": [
+   "E2_misread_condition",
+   "E8_over_citation",
+   "E5_source_confusion",
+   "E7_procedural_error"
+  ],
+  "severity": "major",
+  "rationale": "Pytanie proceduralne (zalezy): straż gminna ma uprawnienia oskarżyciela publicznego wg Art. 17 § 3 KPW, gdy ujawniła wykroczenie w zakresie swojego działania. Model błędnie skonkludował brak uprawnień, pomylił ramy (werdykt 'brak naruszenia' do pytania o właściwość) i cytował nieadekwatny ust. 2 (art. 27, 119)."
+ },
+ {
+  "id": "def_zasady-002",
+  "model_verdict": "brak_naruszenia",
+  "verdict_correct": true,
+  "legal_correctness": "partially_correct",
+  "article_assessment": "acceptable",
+  "hallucinated_law": false,
+  "penalty_handling": "na",
+  "error_categories": [
+   "E8_over_citation"
+  ],
+  "severity": "minor",
+  "rationale": "Werdykt trafny (brak naruszenia). Art. 25 powołany jako podstawa jest realny i kierowca go spełnił, ale gold oczekuje Art. 2; dodatkowo zalew nieadekwatnych przepisów (Art. 9 ust. 1-3, Art. 22, Art. 23) to nadmiarowe cytowanie."
+ },
+ {
+  "id": "def_zasady-003",
+  "model_verdict": "naruszenie",
+  "verdict_correct": false,
+  "legal_correctness": "incorrect",
+  "article_assessment": "wrong",
+  "hallucinated_law": false,
+  "penalty_handling": "correct_absent_flagged",
+  "error_categories": [
+   "E2_misread_condition",
+   "E3_guilt_bias"
+  ],
+  "severity": "major",
+  "rationale": "Pojazd z lewej nie ma pierwszeństwa, więc poprawny werdykt to brak naruszenia. Model błędnie uznał naruszenie Art. 25, traktując lewą stronę jak prawą ('lewa strona w kontekście skrzyżowań równorzędnych') - klasyczne nieodczytanie warunku i tendencja do orzekania winy."
+ },
+ {
+  "id": "kontrola_drogowa-001",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "partially_correct",
+  "article_assessment": "wrong",
+  "hallucinated_law": true,
+  "penalty_handling": "fabricated",
+  "error_categories": [
+   "E5_source_confusion",
+   "E4_fabricated_penalty",
+   "E8_over_citation"
+  ],
+  "severity": "minor",
+  "rationale": "Werdykt trafny (kierowca naruszył obowiązek podporządkowania się poleceniu), ale właściwy Art. 129 ust. 2 nie powołany; model wskazał Art. 129b (uprawnienia inspekcji/straży, nie Policji) i podał kwotę 500-1000 zł jako fakt bez pozycji taryfikatora w kontekście."
+ },
+ {
+  "id": "kontrola_drogowa-002",
+  "model_verdict": "brak_naruszenia",
+  "verdict_correct": false,
+  "legal_correctness": "incorrect",
+  "article_assessment": "wrong",
+  "hallucinated_law": false,
+  "penalty_handling": "na",
+  "error_categories": [
+   "E2_misread_condition",
+   "E6_under_detection"
+  ],
+  "severity": "major",
+  "rationale": "Policjant ma prawo żądać badania (Art. 129 ust. 2 pkt 3), a kierowca odmawiający narusza obowiązek - poprawny werdykt to naruszenie. Model orzekł brak naruszenia, powołał Art. 129i ust. 3 i pominął bezprawność odmowy kierowcy."
+ },
+ {
+  "id": "znaki_sygnaly-001",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "partially_correct",
+  "article_assessment": "wrong",
+  "hallucinated_law": false,
+  "penalty_handling": "correct_from_context",
+  "error_categories": [
+   "E5_source_confusion",
+   "E8_over_citation"
+  ],
+  "severity": "minor",
+  "rationale": "Werdykt trafny, ale uzasadnienie błędne - model powołał Art. 25 ust. 4 (brak miejsca na skrzyżowaniu) i Art. 29 zamiast Art. 5 (pierwszeństwo poleceń kierującego ruchem nad sygnałami). Kwalifikacja Art. 92 k.w. i 100 zł zgodne z pobranym taryfikatorem."
+ },
+ {
+  "id": "znaki_sygnaly-002",
+  "model_verdict": "brak_naruszenia",
+  "verdict_correct": true,
+  "legal_correctness": "partially_correct",
+  "article_assessment": "wrong",
+  "hallucinated_law": false,
+  "penalty_handling": "na",
+  "error_categories": [
+   "E5_source_confusion",
+   "E8_over_citation"
+  ],
+  "severity": "minor",
+  "rationale": "Werdykt trafny (podporządkowanie się policjantowi jest zgodne z prawem), ale rozumowanie chybione - powołano Art. 25, 26 (piesi), 49 (zatrzymanie przy przejściu) zamiast Art. 5 o pierwszeństwie poleceń osoby kierującej ruchem."
+ },
+ {
+  "id": "swiatla-001",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "correct",
+  "article_assessment": "on_point",
+  "hallucinated_law": false,
+  "penalty_handling": "correct_from_context",
+  "error_categories": [
+   "E8_over_citation"
+  ],
+  "severity": "minor",
+  "rationale": "Werdykt i główny przepis trafne (Art. 51 ust. 1, brak świateł w dzień). Kwalifikacja Art. 88 k.w. i 100 zł są merytorycznie prawidłowe; jedyna wada to mocno rozdmuchana analiza wielu nieistotnych ustępów Art. 30 i 51."
+ },
+ {
+  "id": "swiatla-002",
+  "model_verdict": "brak_naruszenia",
+  "verdict_correct": true,
+  "legal_correctness": "correct",
+  "article_assessment": "on_point",
+  "hallucinated_law": false,
+  "penalty_handling": "correct_absent_flagged",
+  "error_categories": [],
+  "severity": "none",
+  "rationale": "Wzorcowa odpowiedź: Art. 51 ust. 2 wprost dopuszcza w dzień światła do jazdy dziennej zamiast mijania, werdykt brak naruszenia, brak halucynacji i prawidłowe pominięcie kary."
+ },
+ {
+  "id": "wlaczanie-001",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "partially_correct",
+  "article_assessment": "acceptable",
+  "hallucinated_law": false,
+  "penalty_handling": "correct_absent_flagged",
+  "error_categories": [
+   "E8_over_citation"
+  ],
+  "severity": "minor",
+  "rationale": "Werdykt trafny i właściwy Art. 17 ust. 1 (włączanie się do ruchu z nieruchomości) powołany, ale obok dorzucono nieadekwatne Art. 14, 23, 27, 49; werdykt finalny oparto na ogólnym Art. 97 k.w. zamiast wprost na obowiązku z Art. 17 ust. 2."
+ },
+ {
+  "id": "wlaczanie-002",
+  "model_verdict": "naruszenie",
+  "verdict_correct": true,
+  "legal_correctness": "partially_correct",
+  "article_assessment": "wrong",
+  "hallucinated_law": false,
+  "penalty_handling": "correct_absent_flagged",
+  "error_categories": [
+   "E5_source_confusion",
+   "E8_over_citation"
+  ],
+  "severity": "minor",
+  "rationale": "Werdykt trafny, ale model oparł go na całkowicie błędnym Art. 23 ust. 1 (omijanie) zamiast na Art. 17 (włączanie się ze strefy zamieszkania) i Art. 2; wspomniał też nieadekwatne Art. 94/97. Mimo że Art. 17 był w retrievalu, nie został wskazany."
+ },
+ {
+  "id": "strony_wlasciwosc-001",
+  "model_verdict": "brak_naruszenia",
+  "verdict_correct": true,
+  "legal_correctness": "incorrect",
+  "article_assessment": "wrong",
+  "hallucinated_law": false,
+  "penalty_handling": "na",
+  "error_categories": [
+   "E5_source_confusion",
+   "E7_procedural_error"
+  ],
+  "severity": "minor",
+  "rationale": "Etykieta werdyktu przypadkiem zgodna, ale model odpowiedział na inne pytanie - powołał Art. 97 KPW (obowiązek informacyjny o odmowie mandatu) zamiast Art. 17 § 1 KPW i w ogóle nie ocenił, czy policjant jest uprawniony jako oskarżyciel publiczny."
+ },
+ {
+  "id": "strony_wlasciwosc-002",
+  "model_verdict": "brak_naruszenia",
+  "verdict_correct": false,
+  "legal_correctness": "partially_correct",
+  "article_assessment": "on_point",
+  "hallucinated_law": false,
+  "penalty_handling": "na",
+  "error_categories": [
+   "E7_procedural_error"
+  ],
+  "severity": "major",
+  "rationale": "Model merytorycznie trafnie ustalił, że oskarżycielem jest inspektor pracy (Art. 17 § 2 KPW), co oznacza, że policjant NIE jest uprawniony - czyli odpowiedź na pytanie powinna prowadzić do werdyktu naruszenie. Mimo to model zaetykietował 'brak naruszenia', co kłóci się z gold i myli wniosek procesowy."
+ }
+]
